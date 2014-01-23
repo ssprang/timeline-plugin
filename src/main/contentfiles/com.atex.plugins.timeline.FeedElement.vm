@@ -1,0 +1,61 @@
+{
+    "timeline":
+    {
+        "headline":"$!content.name",
+        "type":"default",
+        "text":"$!content.description.value"
+        #if($content.image)
+        ,"asset": {
+            "media":"http://yourdomain_or_socialmedialink_goes_here.jpg",
+            "credit":"Credit Name Goes Here",
+            "caption":"Caption text goes here"
+        }
+        #end
+        , "date": [{}
+##PQ's#####################################################################################
+        #set($list = $content.sources.list)
+        #if($list)
+        ## loops thru the list of queues
+        #foreach($pq in $list)
+        #set($contentList = $pq.content.contentList)
+        ## loops thru entries in queues
+        #foreach($contentEntry in $contentList)
+        #set($entry = $contentEntry.content)
+        #if($entry.isTimelineRepresentable)
+
+            ,{
+                "startDate":"$!date.format("yyyy,MM,d", $entry.publishingDateTime, $entry.defaultLocale)"
+##                , "endDate":"$!date.format("yyyy,MM,d", $entry.publishingDateTime, $entry.defaultLocale)"
+                , "headline":"$!entry.name"
+                #if("$!entry.lead" != "")
+                ,"text":"$!entry.lead"
+                #end
+                ##"tag":"This is Optional",
+                ##"classname":"optionaluniqueclassnamecanbeaddedhere"
+                #if($entry.asset && false)
+                , "asset": {
+                    "media":asset.mediaURL,
+                    "thumbnail":asset.thumnailURL,
+                    "credit":asset.credit,
+                    "caption":asset.caption
+                }
+                #end
+            }
+        #end
+        #end
+        #end
+        #end
+## END PQ's################################################################################
+        ]
+        , "era": [
+            #*{
+                "startDate":"2013,12,10",
+                "endDate":"2013,12,11",
+                "headline":"Headline Goes Here",
+                "text":"<p>Body text goes here, some HTML is OK</p>",
+                "tag":"This is Optional"
+            }*#
+        ]
+
+    }
+}

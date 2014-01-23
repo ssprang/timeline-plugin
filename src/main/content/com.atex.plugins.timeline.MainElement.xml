@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template-definition version="1.0" xmlns="http://www.polopoly.com/polopoly/cm/app/xml">
+  <input-template name="com.atex.plugins.timeline.Field">
+    <policy>com.polopoly.cm.policy.PolicyImplBase</policy>
+    <editor>com.polopoly.cm.app.widget.OComplexFieldTopPolicyWidget</editor>
+    <viewer>com.polopoly.cm.app.widget.OComplexFieldTopPolicyWidget</viewer>
+    <content-list name="feed" input-template="com.atex.plugins.timeline.FeedElementContentListWrapper" />
+    <field name="simpleContentCreator" input-template="p.SimpleContentCreator">
+      <param name="insertTargetAlias">content</param>
+      <param name="askInsertTarget">false</param>
+      <param name="insertionContentListName">feed</param>
+      <param name="askInsertionContentListName">false</param>
+      <param name="askContentListPosition">false</param>
+      <param name="insertPosition">top</param>
+      <param name="createWithSecurityParent">true</param>
+      <param name="securityParentAlias">content-securityparent</param>
+      <param name="createLabel">Create timeline feed</param>
+      <idparam name="inputTemplateId">
+        <externalid>com.atex.plugins.timeline.FeedElement</externalid>
+      </idparam>
+    </field>
+    <field name="feed" input-template="p.ContentListEntryContainer" label="Feed">
+      <param name="contentListName">feed</param>
+    </field>
+  </input-template>
+  <input-template name="com.atex.plugins.timeline.MainElement" label="Timeline element">
+    <type>LayoutElement</type>
+
+    <policy>com.atex.plugins.timeline.TimelineElementPolicy</policy>
+    <editor>com.polopoly.cm.app.widget.OTopPolicyWidget</editor>
+    <viewer>com.polopoly.cm.app.widget.OTopPolicyWidget</viewer>
+    <editor contextName="orchid_TOCENTRY">com.polopoly.siteengine.standard.contentlist.OContentListEntryBasePolicyWidget</editor>
+    <viewer contextName="orchid_TOCENTRY">com.polopoly.siteengine.standard.contentlist.OContentListEntryBasePolicyWidget</viewer>
+
+    <layout name="pages" input-template="p.AjaxPageMenu">
+      <layout name="content" input-template="p.Page" label="Content">
+        <param name="lazyInit">true</param>
+        <field name="name" input-template="p.ContentName" label="com.atex.plugins.timeline.name" required="true" />
+        <field name="source" input-template="p.SelectableSubField" label="Source" required="true">
+          <field name="url" input-template="p.TextInput" label="URL"></field>
+          <field name="timeline" input-template="com.atex.plugins.timeline.Field"></field>
+        </field>
+      </layout>
+      <layout name="advanced" input-template="p.Page" label="Advanced">
+        <field name="width" input-template="p.TextInput" label="Width">
+          <help>Use numeric number for pixels or suffix with '%'.</help>
+          <param name="inlineHelp">true</param>
+        </field>
+        <field name="height" input-template="p.TextInput" label="Height">
+          <help>Use numeric number for pixels or suffix with '%'.</help>
+          <param name="inlineHelp">true</param>
+        </field>
+        <field name="bookmarking" input-template="p.Checkbox" label="Allow bookmarking">
+          <help>This will put a place holder in URL to allow for linking to a specific slide.</help>
+          <param name="inlineHelp">true</param>
+          <param name="checked">false</param>
+        </field>
+        <field name="reverse" input-template="p.Checkbox" label="Start timeline at the end">
+          <param name="checked">false</param>
+        </field>
+        <field name="lang" input-template="p.Select" label="Language">
+          <param name="hasNoneOption">true</param>
+          <param name="size">1</param>
+          <param name="label_0">English (default)</param>
+          <param name="value_0">en</param>
+          <param name="label_1">French</param>
+          <param name="value_1">fr</param>
+          <param name="label_2">Swedish</param>
+          <param name="value_2">sv</param>
+        </field>
+        <field name="font" input-template="p.Select" label="Font">
+          <param name="hasNoneOption">true</param>
+          <param name="size">1</param>
+          <param name="label_0">Arvo-PTSans</param>
+          <param name="value_0">Arvo-PTSans</param>
+          <param name="label_1">Merriweather-NewsCycle</param>
+          <param name="value_1">Merriweather-NewsCycle</param>
+          <param name="label_2">PoiretOne-Molengo</param>
+          <param name="value_2">PoiretOne-Molengo</param>
+          <param name="label_3">PTSerif-PTSans</param>
+          <param name="value_3">PTSerif-PTSans</param>
+          <param name="label_4">DroidSerif-DroidSans</param>
+          <param name="value_4">DroidSerif-DroidSans</param>
+          <param name="label_5">Lekton-Molengo</param>
+          <param name="value_5">Lekton-Molengo</param>
+          <param name="label_6">NixieOne-Ledger</param>
+          <param name="value_6">NixieOne-Ledger</param>
+          <param name="label_7">AbrilFatface-Average</param>
+          <param name="value_7">AbrilFatface-Average</param>
+          <param name="label_8">PlayfairDisplay-Muli</param>
+          <param name="value_8">PlayfairDisplay-Muli</param>
+          <param name="label_9">Rancho-Gudea</param>
+          <param name="value_9">Rancho-Gudea</param>
+          <param name="label_10">Bevan-PotanoSans</param>
+          <param name="value_10">Bevan-PotanoSans</param>
+          <param name="label_11">BreeSerif-OpenSans</param>
+          <param name="value_11">BreeSerif-OpenSans</param>
+          <param name="label_12">SansitaOne-Kameron</param>
+          <param name="value_12">SansitaOne-Kameron</param>
+          <param name="label_13">Pacifico-Arimo</param>
+          <param name="value_13">Pacifico-Arimo</param>
+        </field>
+      </layout>
+    </layout>
+    <output-templates mode="www">
+      <id>com.atex.plugins.timeline.MainElement.ot</id>
+    </output-templates>
+  </input-template>
+</template-definition>

@@ -1,0 +1,63 @@
+#set($uniqueId = $content.contentId.major + "_" + $content.contentId.minor + "_" + $m.local.controllerContext.renderId)
+##set($path_to_src = "#file({'contentId': $filesContentId, 'filename':'test.json', '':''})")
+#set($width = "")
+#if("$!content.width.value" == "")
+  #set($width = "100%")
+#else
+  #set($width = "$!content.width.value")
+#end
+#set($height = "")
+#if("$!content.height.value" == "")
+  #set($height = "600")
+#else
+  #set($height = "$!content.height.value")
+#end
+#set($path_to_src = "")
+#if($content.urlBased)
+  #set($path_to_src = $!content.source.selected.value)
+#else
+  #if($content.source.selected.feed.list && $content.source.selected.feed.list.size() > 0)
+    #set($feed = $content.source.selected.feed.list.get(0).content)
+  #end
+  #if($feed)
+    #*set($path = $feed.parentIds)
+    #if(!$tool_path.isValidPath($path) && $tool_path.isValidPath($m.context.page.contentPath))
+      #set($path = $tool_path.concat($m.context.page.contentPath, $feed.contentId))
+    #end*#
+    #set($path_to_src = "#link({'contentId': $feed.contentId, 'htmlEncodeLink': 'true', '':''})")
+  #end
+#end
+#set($path_to_css = "#file({'contentId': $filesContentId, 'filename':'timeline.css', '':''})")
+#set($path_to_js  = "#file({'contentId': $filesContentId, 'filename':'timeline-min.js', '':''})")
+
+
+
+  <script type="text/javascript" src="#file({'contentId': $filesContentId, 'filename':'storyjs-embed.js', '':''})"></script>
+  <script>
+      $(document).ready(function() {
+          createStoryJS({
+              type:       'timeline',
+              width:      '$!width',
+              height:     '$!height',
+              source:     '$!path_to_src',
+              embed_id:   'my-timeline-$!uniqueId',
+              #if("$!content.lang.value" != "")
+                lang:     '$!content.lang.value',
+              #end
+              #if("$!content.font.value" != "")
+                font:     '$!content.font.value',
+              #end
+              #if($content.bookmarking.checked)
+                hash_bookmark:      true,
+              #end
+              #if($content.reverse.checked)
+                start_at_end:      true,
+              #end
+
+
+              css:        '$!path_to_css',
+              js:         '$!path_to_js'
+          });
+      });
+  </script>
+  <div id="my-timeline-$!uniqueId"></div>

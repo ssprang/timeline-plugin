@@ -1,0 +1,19 @@
+<output-template name="com.atex.plugins.timeline.FeedElement.ot" input-template="com.atex.plugins.timeline.JSONOutputTemplate">
+  <content-xml>
+    <contentref group="plugin" name="plugindef">
+      <contentid>
+        <major>Content</major>
+        <externalid>plugins.com.atex.plugins.timeline</externalid>
+      </contentid>
+    </contentref>
+    <component group="polopoly.Content" name="name">Timeline feed output template</component>
+    <component group="output/modelKeyMode" name="selected">no-cache</component>
+    <contentref group="output/renderer" name="selected">
+      <contentid>
+        <externalid>p.siteengine.VelocityRenderer</externalid>
+      </contentid>
+    </contentref>
+    <component group="output/renderer" name="templateFileName">com.atex.plugins.timeline.FeedElement.vm</component>
+    <component group="preview/controller" name="value">com.polopoly.siteengine.preview.PreviewControllerStandard</component>
+  </content-xml>
+</output-template>
