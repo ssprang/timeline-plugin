@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template-definition version="1.0" xmlns="http://www.polopoly.com/polopoly/cm/app/xml">
   <input-template name="com.atex.plugins.timeline.FeedElement" label="Feed element">
-    <policy>com.atex.plugins.baseline.policy.BaselinePolicy</policy>
+    <policy>com.atex.plugins.timeline.FeedPolicy</policy>
     <editor>com.polopoly.cm.app.widget.OTopPolicyWidget</editor>
     <viewer>com.polopoly.cm.app.widget.OTopPolicyWidget</viewer>
     <editor contextName="orchid_TOCENTRY">com.polopoly.siteengine.standard.contentlist.OContentListEntryBasePolicyWidget</editor>
@@ -35,5 +35,8 @@
         <param name="contentListName">sources</param>
       </field>
     </layout>
+    <output-templates mode="www">
+      <id>com.atex.plugins.timeline.FeedElement.ot</id>
+    </output-templates>
   </input-template>
 </template-definition>

@@ -16,7 +16,6 @@ public class SingleContentListWrapper extends ConfigurableContentListWrapper {
     public boolean allowAddToFullList() throws CMException {
         return false;
     }
-    
     @Override
     public int getMaxSize() throws CMException {
         return 1;

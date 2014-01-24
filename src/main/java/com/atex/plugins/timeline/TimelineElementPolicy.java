@@ -11,13 +11,15 @@ import com.polopoly.model.DescribesModelType;
 public class TimelineElementPolicy extends BaselinePolicy {
 
     private static final Logger LOG = Logger.getLogger(TimelineElementPolicy.class.getName());
+
     public boolean isUrlBased() {
         try {
             SelectableSubFieldPolicy videoSourceSelect = (SelectableSubFieldPolicy) getChildPolicy("source");
             return ("url".equalsIgnoreCase(videoSourceSelect.getSelectedSubFieldName()));
         } catch (CMException e) {
-            LOG.log(Level.WARNING, "Unable to fetch source of timeline feed");
+            LOG.log(Level.WARNING, "Unable to fetch source of timeline feed", e);
         }
         return true;
     }
+
 }

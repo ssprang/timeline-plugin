@@ -4,7 +4,6 @@
     <policy>com.polopoly.cm.policy.PolicyImplBase</policy>
     <editor>com.polopoly.cm.app.widget.OComplexFieldTopPolicyWidget</editor>
     <viewer>com.polopoly.cm.app.widget.OComplexFieldTopPolicyWidget</viewer>
-    <content-list name="feed" input-template="com.atex.plugins.timeline.FeedElementContentListWrapper" />
     <field name="simpleContentCreator" input-template="p.SimpleContentCreator">
       <param name="insertTargetAlias">content</param>
       <param name="askInsertTarget">false</param>
@@ -31,7 +30,7 @@
     <viewer>com.polopoly.cm.app.widget.OTopPolicyWidget</viewer>
     <editor contextName="orchid_TOCENTRY">com.polopoly.siteengine.standard.contentlist.OContentListEntryBasePolicyWidget</editor>
     <viewer contextName="orchid_TOCENTRY">com.polopoly.siteengine.standard.contentlist.OContentListEntryBasePolicyWidget</viewer>
-
+    <content-list name="feed" input-template="com.atex.plugins.timeline.FeedElementContentListWrapper" />
     <layout name="pages" input-template="p.AjaxPageMenu">
       <layout name="content" input-template="p.Page" label="Content">
         <param name="lazyInit">true</param>

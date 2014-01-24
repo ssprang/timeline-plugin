@@ -13,18 +13,11 @@
         #end
         , "date": [{}
 ##PQ's#####################################################################################
-        #set($list = $content.sources.list)
+        #set($list = $content.feedables)
         #if($list)
-        ## loops thru the list of queues
-        #foreach($pq in $list)
-        #set($contentList = $pq.content.contentList)
-        ## loops thru entries in queues
-        #foreach($contentEntry in $contentList)
-        #set($entry = $contentEntry.content)
-        #if($entry.isTimelineRepresentable)
-
+        #foreach($entry in $list)
             ,{
-                "startDate":"$!date.format("yyyy,MM,d", $entry.publishingDateTime, $entry.defaultLocale)"
+                "startDate":"$!date.format("yyyy,MM,d", $entry.publishingDateTime, $content.locale)"
 ##                , "endDate":"$!date.format("yyyy,MM,d", $entry.publishingDateTime, $entry.defaultLocale)"
                 , "headline":"$!entry.name"
                 #if("$!entry.lead" != "")
@@ -41,8 +34,6 @@
                 }
                 #end
             }
-        #end
-        #end
         #end
         #end
 ## END PQ's################################################################################
